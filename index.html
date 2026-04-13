@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberAware | Cyber Security Awareness Website</title>
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --secondary: #00b4d8;
+      --accent: #90e0ef;
+      --light: #f8fbff;
+      --dark: #1f2937;
+      --danger: #d90429;
+      --success: #2b9348;
+      --warning: #f77f00;
+      --card: #ffffff;
+      --shadow: 0 8px 20px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 18px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(15,76,129,0.95), rgba(0,180,216,0.85)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 90px 20px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: 3rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 750px;
+      margin: 0 auto 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin: 8px;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn.secondary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 70px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      color: var(--primary);
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      color: #4b5563;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+      border-top: 5px solid var(--secondary);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .highlight-box {
+      background: #eaf7ff;
+      border-left: 6px solid var(--secondary);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .resource-list a {
+      display: block;
+      margin: 10px 0;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .resource-list a:hover {
+      text-decoration: underline;
+    }
+
+    .tips-list li,
+    .threat-list li {
+      margin-bottom: 10px;
+    }
+
+    .quiz-container {
+      background: white;
+      box-shadow: var(--shadow);
+      padding: 30px;
+      border-radius: var(--radius);
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .question {
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .question h4 {
+      margin: 0 0 12px;
+      color: var(--primary);
+    }
+
+    .question label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    #quizResult {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 24px;
+      text-align: center;
+      padding: 50px 25px;
+      margin-top: 20px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 24px 16px;
+      margin-top: 40px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dff6ff;
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin: 6px 6px 0 0;
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 800px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .nav-container {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo">CyberAware</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#threats">Threats</a>
+        <a href="#protection">Protection</a>
+        <a href="#resources">Resources</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>CyberAware</h1>
+      <p>
+        CyberAware is a cyber security awareness website designed to help students and everyday users
+        understand online threats, improve safe digital habits, and access trusted advice in a simple and
+        engaging way.
+      </p>
+      <a href="#threats" class="btn">Explore Threats</a>
+      <a href="#quiz" class="btn secondary">Take the Quiz</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Why CyberAware Matters</h2>
+    <p class="section-intro">
+      Cyber threats are becoming more common as people rely on the internet for learning, communication,
+      shopping, and banking. Many users are still unaware of how phishing, scams, malware, and weak passwords
+      can put their data at risk.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Clear Information</h3>
+        <p>
+          CyberAware explains cyber security using simple language so users can understand risks without needing
+          technical knowledge.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Practical Tips</h3>
+        <p>
+          The website focuses on useful actions people can take immediately, such as improving password habits,
+          spotting scam messages, and staying safer on public Wi-Fi.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Interactive Learning</h3>
+        <p>
+          A short quiz is included to help reinforce key lessons and make the experience more engaging than a
+          purely static information page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="threats">
+    <h2 class="section-title">Common Cyber Threats</h2>
+    <p class="section-intro">
+      Understanding cyber threats is the first step toward protecting yourself online.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Phishing</h3>
+        <p>
+          Phishing attacks try to trick users into revealing sensitive information such as passwords, banking
+          details, or personal data through fake emails, texts, or websites.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Malware</h3>
+        <p>
+          Malware is harmful software designed to damage a device, steal data, or gain unauthorised access to
+          systems. It often spreads through downloads, links, or infected attachments.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Social Engineering</h3>
+        <p>
+          Social engineering attacks manipulate people into trusting fake messages or requests. The attacker often
+          pretends to be from a legitimate organisation to persuade the victim to act quickly.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Password Attacks</h3>
+        <p>
+          Weak, short, or reused passwords make it much easier for attackers to access accounts. Strong password
+          habits are one of the most important parts of cyber safety.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Top warning signs:</strong> urgent messages, suspicious links, unexpected attachments, fake login pages,
+      and requests for personal information.
+    </div>
+  </section>
+
+  <section id="protection">
+    <h2 class="section-title">Protection Tips</h2>
+    <p class="section-intro">
+      Good cyber security is built on simple daily habits.
+    </p>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>How to Stay Safe</h3>
+        <ul class="tips-list">
+          <li>Use long and unique passwords for different accounts.</li>
+          <li>Enable two-factor authentication whenever possible.</li>
+          <li>Do not click suspicious links in emails or messages.</li>
+          <li>Keep devices, apps, and browsers updated.</li>
+          <li>Use trusted websites and check for secure connections.</li>
+          <li>Be cautious when using public Wi-Fi for sensitive activities.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Safe Online Habits</h3>
+        <ul class="threat-list">
+          <li>Think before sharing personal information online.</li>
+          <li>Double-check unexpected requests, even if they look official.</li>
+          <li>Download files only from trusted sources.</li>
+          <li>Review privacy settings on social media platforms.</li>
+          <li>Report suspicious scams or messages where possible.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2 class="section-title">Trusted Resources</h2>
+    <p class="section-intro">
+      CyberAware also directs users to trusted external organisations for further information and support.
+    </p>
+
+    <div class="card resource-list">
+      <a href="https://www.ncsc.gov.uk" target="_blank">National Cyber Security Centre (NCSC)</a>
+      <a href="https://www.getsafeonline.org" target="_blank">Get Safe Online</a>
+      <a href="https://www.actionfraud.police.uk" target="_blank">Action Fraud</a>
+      <a href="https://www.gov.uk" target="_blank">UK Government Guidance</a>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <span class="tag">Cyber Awareness</span>
+      <span class="tag">Online Safety</span>
+      <span class="tag">Phishing Prevention</span>
+      <span class="tag">Student Protection</span>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2 class="section-title">Cyber Safety Quiz</h2>
+    <p class="section-intro">
+      Test your knowledge with this short quiz.
+    </p>
+
+    <div class="quiz-container">
+      <div class="question">
+        <h4>1. What is phishing?</h4>
+        <label><input type="radio" name="q1" value="correct"> A fake attempt to steal information</label>
+        <label><input type="radio" name="q1" value="wrong"> A type of antivirus software</label>
+        <label><input type="radio" name="q1" value="wrong"> A secure login method</label>
+      </div>
+
+      <div class="question">
+        <h4>2. Which password is strongest?</h4>
+        <label><input type="radio" name="q2" value="wrong"> password123</label>
+        <label><input type="radio" name="q2" value="correct"> L9!qR2#vT8@x</label>
+        <label><input type="radio" name="q2" value="wrong"> cyberaware</label>
+      </div>
+
+      <div class="question">
+        <h4>3. What should you do with a suspicious email link?</h4>
+        <label><input type="radio" name="q3" value="wrong"> Click it quickly to check</label>
+        <label><input type="radio" name="q3" value="correct"> Avoid clicking and verify the sender</label>
+        <label><input type="radio" name="q3" value="wrong"> Forward it to everyone</label>
+      </div>
+
+      <button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+      <p id="quizResult"></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About the Project</h2>
+    <p class="section-intro">
+      CyberAware was developed as a final year project to explore how a web-based platform can improve cyber security
+      awareness through clear information, practical guidance, and basic interactivity.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Project Aim</h3>
+        <p>
+          To design and develop a cyber security awareness website that helps users understand online threats and
+          encourages safer digital behaviour.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Target Users</h3>
+        <p>
+          The platform is mainly aimed at students and general internet users who want accessible cyber safety advice
+          without complex technical language.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Core Features</h3>
+        <p>
+          The final website includes educational content, threat explanations, protection tips, trusted resources,
+          internal navigation, and an interactive quiz.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3>Build Better Cyber Habits Today</h3>
+      <p>
+        CyberAware is designed to make cyber security easier to understand, easier to access, and easier to apply.
+      </p>
+      <a href="#home" class="btn">Back to Top</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 CyberAware | Final Year Project Website</p>
+  </footer>
+
+  <script>
+    function checkQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        const result = document.getElementById("quizResult");
+        result.style.color = "#d90429";
+        result.textContent = "Please answer all questions before submitting the quiz.";
+        return;
+      }
+
+      let score = 0;
+      answers.forEach(answer => {
+        if (answer.value === "correct") {
+          score++;
+        }
+      });
+
+      const result = document.getElementById("quizResult");
+
+      if (score === 3) {
+        result.style.color = "#2b9348";
+        result.textContent = "Excellent! You scored 3/3. You have strong cyber awareness.";
+      } else if (score === 2) {
+        result.style.color = "#f77f00";
+        result.textContent = "Good job! You scored 2/3. You understand most of the basics.";
+      } else {
+        result.style.color = "#d90429";
+        result.textContent = "You scored " + score + "/3. Review the site content and try again.";
+      }
+    }
+  </script>
+
+</body>
+</html>
